@@ -30,6 +30,7 @@ public class PreCacheJob {
     @Resource
     private UserService userService;
 
+
     @Resource
     private RedisTemplate redisTemplate;
 
