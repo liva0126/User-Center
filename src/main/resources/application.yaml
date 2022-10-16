@@ -3,7 +3,7 @@ spring:
     name: user-center
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/user_center
+    url: jdbc:mysql://localhost:3306/user_center?useSSL=false&serverTimezone=UTC
     username: root
     password: 123456
   session:  # session过期时间 86400为1天

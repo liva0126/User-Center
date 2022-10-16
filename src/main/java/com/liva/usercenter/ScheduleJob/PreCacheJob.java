@@ -3,11 +3,11 @@ package com.liva.usercenter.ScheduleJob;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.liva.usercenter.exception.BusinessException;
+
 import com.liva.usercenter.model.domain.User;
 import com.liva.usercenter.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.redis.core.RedisHash;
+
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -39,8 +39,8 @@ public class PreCacheJob {
 
     //每小时4分 执行一次
     //不用记，直接百度搜索crontab在线工具
-    @Scheduled(cron = "0 11 0 * * *")
-    public void doCatchRecommUser(){
+    @Scheduled(cron = "0 4 0 * * *")
+    public void doCatchRecommendUser(){
         for (Long userId : mainUserList) {
             QueryWrapper<User> queryWrapper = new QueryWrapper<>();
             Page<User> userPage = userService.page(new Page<>(1, 20), queryWrapper);
@@ -50,9 +50,8 @@ public class PreCacheJob {
             try {
                 redisTemplate.opsForValue().set(redisKey,userPage,30,TimeUnit.MINUTES);
             } catch (Exception e) {
-             log.error("redis set key error");
+             log.error("redis set key error",e);
             }
         }
     }
-
 }

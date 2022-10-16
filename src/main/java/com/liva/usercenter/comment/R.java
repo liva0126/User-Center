@@ -22,7 +22,7 @@ public class R {
     }
 
     public static BaseResponse error(int code, String message, String description) {
-        return new BaseResponse(code, null, message, description);
+        return new BaseResponse<>(code, null, message, description);
     }
 
     public static BaseResponse error(ErrorCode errorCode, String message, String description) {

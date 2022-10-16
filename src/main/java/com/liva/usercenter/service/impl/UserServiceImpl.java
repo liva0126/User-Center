@@ -156,18 +156,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             throw new BusinessException(ErrorCode.NULL_ERROR, "查询不到该用户");
         }
 
-        // todo 待学习理解
-        // 先把userlist转化为流，然后调用map方法，
-        // 把里面每个user都用getsafety方法转化一下，
-        // 最后收集这些转化后的数据进一个list集合中
-        //userList.stream().map(user -> getSafetyUser(user)).collect(Collectors.toList());
         userList.stream().map(this::getSafetyUser).collect(Collectors.toList());
 
-//        List<User> safetyList = Collections.emptyList();
-//        for (User user : userList) {
-//            User safetyUser = getSafetyUser(user);
-//            safetyList.add(safetyUser);
-//        }
         return userList;
     }
 
@@ -335,6 +325,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     private boolean isAdmin(User user) {
+
+
+
         return user != null && user.getUserRole() == ADMIN_ROLE;
     }
 }

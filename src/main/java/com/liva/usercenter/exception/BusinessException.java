@@ -1,8 +1,11 @@
 package com.liva.usercenter.exception;
 
-
 import com.liva.usercenter.comment.ErrorCode;
 import lombok.Data;
+
+/**
+ * 自定义业务异常
+ */
 
 @Data
 public class BusinessException extends RuntimeException{

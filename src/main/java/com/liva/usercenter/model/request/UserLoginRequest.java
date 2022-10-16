@@ -1,8 +1,6 @@
 package com.liva.usercenter.model.request;
 
 import lombok.Data;
-import org.apache.commons.lang3.StringUtils;
-
 import java.io.Serializable;
 
 /**
